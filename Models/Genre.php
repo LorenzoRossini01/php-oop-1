@@ -1,13 +1,13 @@
 <?php
 class Genre{
-    public $genre1;
-    public $genre2;
+    public $genre;
+    public $description;
 
     public function __construct( 
-        string $genre1, 
-        string $genre2 )
+        string $genre, 
+        string $description )
         {
-        $this->genre1 = $genre1;
-        $this->genre2 = $genre2;
+        $this->genre = $genre;
+        $this->description = $description;
     }
 }
