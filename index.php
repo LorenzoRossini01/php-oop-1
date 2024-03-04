@@ -15,3 +15,6 @@ class Production{
 $film1 = new Production('Harry Potter', 'eng', '8');
 
 var_dump( $film1 );
+
+$film2= new Production('Spiderman', 'eng', '9');
+var_dump( $film2 );
