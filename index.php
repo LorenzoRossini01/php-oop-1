@@ -1,6 +1,5 @@
 <?php
-require_once __DIR__ ."./Models/Genre.php";
-require_once __DIR__ ."./Models/Production.php";
+
 require_once __DIR__ ."./db.php";
 
 ?>
@@ -17,27 +16,43 @@ require_once __DIR__ ."./db.php";
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Film Table</h1>
-        <table class="table">
-            <tr>
-                <th>Titolo</th>
-                <th>Lingua</th>
-                <th>Voto</th>
-                <th>Genere</th>
-                <th>Deacrizione</th>
-            </tr>
-            <tbody>
-                <?php foreach($Production as $film):?>
-                <tr>
-                    <td><?= $film->title?></td>
-                    <td><?= $film->lang?></td>
-                    <td><?= $film->vote?></td>
-                    <td><?= $film->genre->genre?></td>
-                    <td><?= $film->genre->description?></td>
-                </tr>
+        
+
+        <div class="card" >
+            <div class="card-header">
+            <h1>Film Table</h1>
+            </div>
+            <ul class="list-group list-group-flush">
+                <?php foreach($Productions as $production):?>
+                <li class="list-group-item">  
+                <ul class="list-group list-group-flush">
+
+                    <li class="list-group-item"><h2><b>Titolo</b> <?= $production->title?></h2></li>      
+                    <li class="list-group-item"><b>Lingua</b> <?= $production->lang?></li>      
+                    <li class="list-group-item"><b>Voto</b> <?= $production->vote?></li>      
+                    <li class="list-group-item"><b>Genere</b> 
+                        <?php foreach($production->genres as $genre): ?>
+                            <?= $genre->genre?>
+                        <?php endforeach; ?>
+                    </li>      
+                    <li class="list-group-item"><b>Descrizione</b>                         
+                    <?php foreach($production->genres as $genre): ?>
+                            <?= $genre->description?>
+                        <?php endforeach; ?></li>      
+                    
+                    <?php if($production instanceof TvShow): ?>
+                        <li class="list-group-item"><b>Stagioni</b> <?= $production->seasons?></li>      
+                        <li class="list-group-item"><b>Episodi</b> <?= $production->episodes?></li>      
+                    <?php elseif($production instanceof Movie): ?>
+                        <li class="list-group-item"><b>Earnings</b> <?= $production->earnings?></li>      
+                        <li class="list-group-item"><b>Durata</b> <?= $production->duration?></li>      
+                    <?php endif; ?>
+                </ul>    
+                </li>
                 <?php endforeach;?>
-            </tbody>
-        </table>
+            </ul>
+        </div>
+
     </div>
     
 </body>

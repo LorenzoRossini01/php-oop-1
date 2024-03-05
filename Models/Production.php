@@ -4,17 +4,28 @@ class Production{
     public $lang;
     public $vote;
 
-    public $genre;
+    public $genres;
     public function __construct( 
         string $title, 
         string $lang, 
         int $vote, 
-        Genre $genre)
+        array $genres)
         {
         $this->title = $title;
         $this->lang = $lang;
         $this->vote = $vote;
-        $this->genre = $genre;
+        $this->genres = $genres;
     }
+
+
+    public function set_title($title) {
+        if(empty($title))return;
+        
+        $this->title=ucfirst($title); 
+        }
+
+    public function get_title(){
+        return $this->title;
+    } 
 
 }
